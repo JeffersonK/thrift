@@ -25,14 +25,15 @@ endif
 
 pkgconfigdir = $(libdir)/pkgconfig
 
-lib_LTLIBRARIES = libthrift.la
+lib_LTLIBRARIES = libthrift.la 
+
 pkgconfig_DATA = thrift.pc
 libthrift_la_LDFLAGS = -release $(VERSION) $(BOOST_LDFLAGS)
 
 ## We only build the extra libraries if we have the dependencies,
 ## but we install all of the headers unconditionally.
 if AMX_HAVE_LIBEVENT
-lib_LTLIBRARIES += libthriftnb.la
+lib_LTLIBRARIES += libthriftnb.la 
 pkgconfig_DATA += thrift-nb.pc
 endif
 if AMX_HAVE_ZLIB
@@ -41,8 +42,8 @@ pkgconfig_DATA += thrift-z.pc
 endif
 
 AM_CXXFLAGS = -Wall
-AM_CPPFLAGS = $(BOOST_CPPFLAGS) -I$(srcdir)/src
-AM_LDFLAGS = $(BOOST_LDFLAGS)
+AM_CPPFLAGS = $(BOOST_CPPFLAGS) -I$(srcdir)/src -I/usr/local/include/sector-sphere
+AM_LDFLAGS = $(BOOST_LDFLAGS) /usr/local/lib/sector-sphere/libudt.so /usr/local/lib/sector-sphere/libudttransport.so
 
 # Define the source files for the module
 
@@ -63,6 +64,7 @@ libthrift_la_SOURCES = src/Thrift.cpp \
                        src/transport/THttpTransport.cpp \
                        src/transport/THttpClient.cpp \
                        src/transport/THttpServer.cpp \
+                       src/transport/TUDTTransport.cpp \
                        src/transport/TSocket.cpp \
                        src/transport/TSSLSocket.cpp \
                        src/transport/TSocketPool.cpp \
@@ -142,6 +144,7 @@ include_protocol_HEADERS = \
 
 include_transportdir = $(include_thriftdir)/transport
 include_transport_HEADERS = \
+                         src/transport/TUDTTransport.h \
                          src/transport/TFDTransport.h \
                          src/transport/TFileTransport.h \
                          src/transport/TSimpleFileTransport.h \
