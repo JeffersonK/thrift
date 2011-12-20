@@ -42,8 +42,8 @@ pkgconfig_DATA += thrift-z.pc
 endif
 
 AM_CXXFLAGS = -Wall
-AM_CPPFLAGS = $(BOOST_CPPFLAGS) -I$(srcdir)/src -I/usr/local/include/sector-sphere
-AM_LDFLAGS = $(BOOST_LDFLAGS) /usr/local/lib/sector-sphere/libudt.so /usr/local/lib/sector-sphere/libudttransport.so
+AM_CPPFLAGS = $(BOOST_CPPFLAGS) -I$(srcdir)/src 
+AM_LDFLAGS = $(BOOST_LDFLAGS) 
 
 # Define the source files for the module
 

@@ -313,6 +313,13 @@ AC_CHECK_HEADERS([malloc.h])
 AC_CHECK_HEADERS([openssl/ssl.h])
 AC_CHECK_HEADERS([openssl/rand.h])
 AC_CHECK_HEADERS([openssl/x509v3.h])
+AC_CHECK_HEADERS([udt.h])
+AC_CHECK_HEADERS([transport.h])
+AC_CHECK_HEADERS([udttransport.h])
+
+AC_CHECK_LIB(udt, strlen)
+AC_CHECK_LIB(udttransport, recvmsg)
+
 
 AC_CHECK_LIB(pthread, pthread_create)
 dnl NOTE(dreiss): I haven't been able to find any really solid docs
